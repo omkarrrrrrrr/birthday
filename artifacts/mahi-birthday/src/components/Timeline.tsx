@@ -7,39 +7,44 @@ const timeline = [
   { date: "22 May 2026", text: "A moment to remember always 💕" },
   { date: "4 June 2026", text: "That day I'll never forget ❤️" },
   { date: "15 June 2026", text: "More memories with you 🌸" },
-  { date: "20 July", text: "Happy Birthday Mahi ❤️" }
+  { date: "20 July", text: "Happy Birthday Mahi ❤️" },
 ];
 
 export function Timeline() {
   return (
-    <section className="py-32 w-full relative">
-      <div className="max-w-4xl mx-auto px-4 relative">
-        <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-primary/10 rounded-full md:-translate-x-1/2" />
-        
+    <section className="py-20 w-full relative">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-14 px-4"
+      >
+        <h2 className="font-serif text-3xl md:text-5xl text-white mb-3">Our Journey</h2>
+        <div className="w-16 h-0.5 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
+      </motion.div>
+
+      <div className="max-w-xl mx-auto px-5 relative">
+        {/* Vertical line — always left-side on mobile */}
+        <div className="absolute left-[28px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-primary/10 rounded-full" />
+
         {timeline.map((item, i) => (
-          <motion.div 
+          <motion.div
             key={i}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className={`relative flex items-center justify-between mb-16 md:mb-24 ${
-              i % 2 === 0 ? 'md:flex-row-reverse' : ''
-            }`}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.55, delay: i * 0.08 }}
+            className="relative flex items-start mb-10 last:mb-0"
           >
-            {/* Center Node */}
-            <div className="absolute left-[20px] md:left-1/2 w-8 h-8 rounded-full bg-background border-4 border-primary shadow-[0_0_15px_#FF1493] md:-translate-x-1/2 -translate-x-[14px] z-10 animate-pulse" />
-            
-            {/* Content */}
-            <div className="w-full pl-16 md:pl-0 md:w-[45%]">
-              <div className="glass-panel p-6 rounded-2xl hover:scale-105 transition-transform duration-300 box-glow border-l-4 border-l-primary md:border-l-0">
-                <span className="text-secondary font-bold tracking-wider text-sm block mb-2">{item.date}</span>
-                <p className="text-white text-lg font-serif">{item.text}</p>
-              </div>
+            {/* Node */}
+            <div className="absolute left-[20px] top-4 w-4 h-4 rounded-full bg-background border-[3px] border-primary shadow-[0_0_12px_#FF1493] z-10 flex-shrink-0" />
+
+            {/* Card */}
+            <div className="ml-14 glass-panel p-5 rounded-2xl w-full border border-white/10 border-l-2 border-l-primary">
+              <span className="text-secondary font-bold tracking-wider text-xs block mb-1.5">{item.date}</span>
+              <p className="text-white text-base font-serif leading-snug">{item.text}</p>
             </div>
-            
-            {/* Empty space for alternating layout */}
-            <div className="hidden md:block w-[45%]" />
           </motion.div>
         ))}
       </div>

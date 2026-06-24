@@ -11,24 +11,26 @@ const lines = [
   "No matter what happens, you'll always hold a special place in my heart.",
   "Happy Birthday ❤️",
   "Forever yours,",
-  "Omkar"
+  "Omkar",
 ];
 
 export function LoveMessage() {
   return (
-    <section className="py-40 px-4 min-h-screen flex items-center bg-black/60 relative overflow-hidden">
+    <section className="py-24 px-5 min-h-[70dvh] flex items-center bg-black/60 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background z-0" />
-      
-      <div className="max-w-3xl mx-auto text-center relative z-10 space-y-8">
+
+      <div className="max-w-2xl mx-auto text-center relative z-10 space-y-6">
         {lines.map((line, i) => (
           <motion.p
             key={i}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 1, delay: i * 0.2 }}
-            className={`font-serif text-xl md:text-3xl text-white/90 leading-relaxed ${
-              i === 0 || i === lines.length - 2 || i === lines.length - 1 ? 'font-bold text-primary' : ''
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.9, delay: i * 0.15 }}
+            className={`font-serif leading-relaxed ${
+              i === 0 || i === lines.length - 2 || i === lines.length - 1
+                ? 'text-xl sm:text-2xl font-bold text-primary'
+                : 'text-base sm:text-xl text-white/90'
             }`}
           >
             {line}

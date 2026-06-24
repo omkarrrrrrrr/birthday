@@ -7,6 +7,7 @@ import { VideoMemories } from './components/VideoMemories';
 import { Timeline } from './components/Timeline';
 import { LoveMessage } from './components/LoveMessage';
 import { SurpriseSection } from './components/SurpriseSection';
+import { SlideShow } from './components/SlideShow';
 import { FinalScene } from './components/FinalScene';
 import { ParticleSystem } from './components/ParticleSystem';
 import { CursorTrail } from './components/CursorTrail';
@@ -15,7 +16,6 @@ import { AnimatePresence } from 'framer-motion';
 function App() {
   const [loading, setLoading] = useState(true);
 
-  // Scroll to top on load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -27,17 +27,18 @@ function App() {
       </AnimatePresence>
 
       {!loading && (
-        <main className="w-full min-h-screen bg-background text-foreground relative selection:bg-primary/30">
+        <main className="w-full min-h-[100dvh] bg-background text-foreground relative selection:bg-primary/30">
           <ParticleSystem />
           <CursorTrail />
           <MusicPlayer />
-          
+
           <HeroSection />
           <PhotoGallery />
           <VideoMemories />
           <Timeline />
           <LoveMessage />
           <SurpriseSection />
+          <SlideShow />
           <FinalScene />
         </main>
       )}

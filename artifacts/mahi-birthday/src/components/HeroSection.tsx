@@ -3,33 +3,30 @@ import { motion } from 'framer-motion';
 
 function RotatingHeart() {
   return (
-    <div className="relative flex items-center justify-center w-64 h-64 md:w-96 md:h-96">
-      {/* Outer glow rings */}
+    <div className="relative flex items-center justify-center w-48 h-48 md:w-72 md:h-72">
       {[1, 2, 3].map((i) => (
         <motion.div
           key={i}
           className="absolute rounded-full border border-pink-500/20"
-          style={{ width: `${100 + i * 60}px`, height: `${100 + i * 60}px` }}
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.1, 0.3] }}
+          style={{ width: `${80 + i * 44}px`, height: `${80 + i * 44}px` }}
+          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.08, 0.3] }}
           transition={{ duration: 2 + i * 0.5, repeat: Infinity, delay: i * 0.3 }}
         />
       ))}
 
-      {/* 3D Heart SVG with rotation */}
       <motion.div
-        animate={{ 
+        animate={{
           rotateY: [0, 360],
-          y: [0, -15, 0],
+          y: [0, -12, 0],
         }}
-        transition={{ 
+        transition={{
           rotateY: { duration: 6, repeat: Infinity, ease: 'linear' },
-          y: { duration: 3, repeat: Infinity, ease: 'easeInOut' }
+          y: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
         }}
         style={{ transformStyle: 'preserve-3d', perspective: '500px' }}
         className="relative"
       >
-        {/* Main heart */}
-        <svg width="180" height="160" viewBox="0 0 180 160" className="drop-shadow-[0_0_30px_rgba(255,20,147,0.8)]">
+        <svg width="130" height="115" viewBox="0 0 180 160" className="drop-shadow-[0_0_25px_rgba(255,20,147,0.8)]">
           <defs>
             <radialGradient id="heartGrad" cx="50%" cy="40%" r="60%">
               <stop offset="0%" stopColor="#FF69B4" />
@@ -41,10 +38,10 @@ function RotatingHeart() {
               <stop offset="100%" stopColor="rgba(255,255,255,0)" />
             </radialGradient>
             <filter id="glow">
-              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feGaussianBlur stdDeviation="4" result="coloredBlur" />
               <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
           </defs>
@@ -57,21 +54,19 @@ function RotatingHeart() {
             d="M90 145 C90 145 15 100 15 55 C15 30 30 15 50 15 C65 15 80 25 90 40 C100 25 115 15 130 15 C150 15 165 30 165 55 C165 100 90 145 90 145Z"
             fill="url(#heartShine)"
           />
-          {/* Highlight */}
           <ellipse cx="68" cy="45" rx="18" ry="12" fill="rgba(255,255,255,0.25)" transform="rotate(-20, 68, 45)" />
         </svg>
       </motion.div>
 
-      {/* Sparkles around heart */}
-      {[...Array(8)].map((_, i) => {
-        const angle = (i / 8) * 360;
-        const r = 110;
+      {[...Array(6)].map((_, i) => {
+        const angle = (i / 6) * 360;
+        const r = 80;
         const x = Math.cos((angle * Math.PI) / 180) * r;
         const y = Math.sin((angle * Math.PI) / 180) * r;
         return (
           <motion.div
             key={i}
-            className="absolute text-pink-300 text-sm select-none pointer-events-none"
+            className="absolute text-pink-300 text-xs select-none pointer-events-none"
             style={{ left: `calc(50% + ${x}px)`, top: `calc(50% + ${y}px)` }}
             animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }}
             transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
@@ -116,8 +111,7 @@ function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
 
 export function HeroSection() {
   return (
-    <section className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
-      {/* Animated gradient background */}
+    <section className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden px-4">
       <motion.div
         className="absolute inset-0 z-0"
         animate={{
@@ -125,23 +119,22 @@ export function HeroSection() {
             'radial-gradient(ellipse at 20% 50%, rgba(139,92,246,0.15) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(255,20,147,0.15) 0%, transparent 60%)',
             'radial-gradient(ellipse at 80% 50%, rgba(139,92,246,0.15) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(255,20,147,0.15) 0%, transparent 60%)',
             'radial-gradient(ellipse at 20% 50%, rgba(139,92,246,0.15) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(255,20,147,0.15) 0%, transparent 60%)',
-          ]
+          ],
         }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* Floating star dots */}
-      {[...Array(40)].map((_, i) => (
+      {[...Array(30)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full bg-white pointer-events-none"
           style={{
-            width: Math.random() * 3 + 1,
-            height: Math.random() * 3 + 1,
+            width: Math.random() * 2.5 + 1,
+            height: Math.random() * 2.5 + 1,
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
           }}
-          animate={{ opacity: [0.1, 0.8, 0.1] }}
+          animate={{ opacity: [0.1, 0.7, 0.1] }}
           transition={{
             duration: Math.random() * 3 + 2,
             repeat: Infinity,
@@ -150,19 +143,20 @@ export function HeroSection() {
         />
       ))}
 
-      {/* Content */}
-      <div className="z-10 flex flex-col items-center gap-8 text-center px-4">
+      <div className="z-10 flex flex-col items-center gap-6 text-center">
         <RotatingHeart />
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           <motion.h1
-            className="font-serif text-4xl md:text-7xl lg:text-8xl font-bold leading-tight"
+            className="font-serif text-3xl sm:text-5xl md:text-7xl font-bold leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-pink-300 to-purple-400"
-              style={{ textShadow: 'none', filter: 'drop-shadow(0 0 20px rgba(255,20,147,0.5))' }}>
+            <span
+              className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-pink-300 to-purple-400"
+              style={{ filter: 'drop-shadow(0 0 16px rgba(255,20,147,0.5))' }}
+            >
               <TypewriterText text="Happy Birthday" delay={0.8} />
             </span>
             <br />
@@ -172,7 +166,7 @@ export function HeroSection() {
           </motion.h1>
 
           <motion.p
-            className="text-lg md:text-2xl text-white/70 font-light tracking-widest"
+            className="text-base sm:text-xl md:text-2xl text-white/70 font-light tracking-wide px-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 4 }}
@@ -181,7 +175,7 @@ export function HeroSection() {
           </motion.p>
 
           <motion.div
-            className="flex items-center justify-center gap-2 text-pink-400/60 text-sm tracking-wider"
+            className="flex items-center justify-center gap-2 text-pink-400/60 text-xs tracking-widest"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 5 }}
@@ -193,14 +187,13 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
         animate={{ opacity: [0.4, 1, 0.4] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <span className="text-white/40 text-xs tracking-widest">SCROLL</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-pink-500/0 via-pink-500/60 to-pink-500/0" />
+        <span className="text-white/40 text-[10px] tracking-widest">SCROLL</span>
+        <div className="w-[1px] h-10 bg-gradient-to-b from-pink-500/0 via-pink-500/60 to-pink-500/0" />
       </motion.div>
     </section>
   );
