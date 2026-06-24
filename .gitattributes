@@ -1,2 +1,4 @@
 artifacts/mahi-birthday/public/photos/VID_20260604_183606796.mp4 filter=lfs diff=lfs merge=lfs -text
 attached_assets/IMG_20260604_193107892.jpg_1782286639510.zip filter=lfs diff=lfs merge=lfs -text
+artifacts/mahi-birthday/public/memory.mp4 filter=lfs diff=lfs merge=lfs -text
+attached_assets/VID_20260604_183606796_1782290608233.mp4 filter=lfs diff=lfs merge=lfs -text

@@ -7,6 +7,7 @@ import { Timeline } from './components/Timeline';
 import { LoveMessage } from './components/LoveMessage';
 import { SurpriseSection } from './components/SurpriseSection';
 import { SlideShow } from './components/SlideShow';
+import { VideoMemory } from './components/VideoMemory';
 import { FinalScene } from './components/FinalScene';
 import { ParticleSystem } from './components/ParticleSystem';
 import { CursorTrail } from './components/CursorTrail';
@@ -34,6 +35,7 @@ function App() {
           <HeroSection />
           <PhotoGallery />
           <Timeline />
+          <VideoMemory />
           <LoveMessage />
           <SurpriseSection />
           <SlideShow />
