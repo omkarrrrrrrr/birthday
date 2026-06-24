@@ -1,0 +1,152 @@
+Build an INSANELY PREMIUM, CINEMATIC, INTERACTIVE birthday website for my girlfriend.
+
+Names:
+Girlfriend: Mahi
+Boyfriend: Omkar
+Birthday: 20 July
+
+Goal:
+This should feel like a luxury interactive experience, not a normal website. It should look like something created by a top creative agency with a budget of $10,000+.
+
+Tech Requirements:
+
+* React + Vite
+* Tailwind CSS
+* Framer Motion
+* Three.js / React Three Fiber
+* GSAP (if needed)
+* Fully mobile responsive
+* Smooth 60fps animations
+* Optimized loading
+
+Visual Style:
+
+* Luxury black, pink, purple, gold aesthetic
+* Glassmorphism
+* Cinematic lighting
+* Floating particles
+* Dynamic glow effects
+* Animated gradients
+* Depth and parallax
+* Apple-level polish
+
+Landing Experience:
+
+* Loading screen with "For Mahi ❤️"
+* Magical particle reveal
+* Cinematic camera movement
+* Typewriter animation
+* Animated text:
+  "Happy Birthday Mahi ❤️"
+* Subtitle:
+  "A universe of memories created by Omkar"
+
+Background:
+
+* Interactive galaxy
+* Shooting stars
+* Floating glowing hearts
+* Aurora effects
+* Mouse-reactive particles
+
+Music:
+
+* Elegant floating music player
+* Background music support
+* Beautiful controls
+* Smooth transitions
+
+Photo Gallery:
+
+* Floating 3D photo frames
+* Dynamic carousel
+* Masonry layout
+* Lightbox viewing
+* Hover effects
+* Parallax movement
+* Magical transitions
+
+Video Memories:
+
+* Cinematic video cards
+* Smooth opening animations
+* Floating glass panels
+
+Love Story Timeline:
+
+* Animated scrolling timeline
+* Heartbeat effects
+* Memory cards appearing with motion
+* Smooth reveal animations
+
+Special Message Section:
+"Dear Mahi,
+
+Happy Birthday to the most beautiful person in my life.
+
+Every smile of yours feels like sunshine.
+Every conversation becomes a memory.
+Every moment with you becomes special.
+
+Thank you for bringing happiness into my life and making ordinary days unforgettable.
+
+I wish you endless happiness, success, laughter and love.
+
+No matter what happens, you'll always hold a special place in my heart.
+
+Happy Birthday ❤️
+
+Forever yours,
+Omkar"
+
+Insane Features:
+
+* Heart trail follows mouse cursor
+* Floating rose petals
+* Fireflies at night
+* Interactive particles
+* Sparkle explosions on click
+* Dynamic glowing effects
+* 3D rotating heart in hero section
+* Confetti system
+* Fireworks system
+* Surprise unlock button
+
+Surprise Section:
+Hidden luxury button:
+"Open Your Surprise ❤️"
+
+When clicked:
+
+* Massive fireworks
+* Heart explosion
+* Camera shake
+* Music intensifies
+* Thousands of particles
+* Final message:
+
+"Mahi,
+You are my favorite person,
+my happiest memory,
+and my greatest blessing.
+I love you ❤️"
+
+Final Scene:
+
+* Starry night sky
+* Moonlight glow
+* Floating hearts
+* Endless particle effects
+* Text:
+
+"To Infinity & Beyond ❤️"
+
+Requirements:
+
+* No placeholders
+* No unfinished sections
+* No build errors
+* Production-ready
+* Stunning animations everywhere
+* Every section should create an emotional wow factor
+* Make visitors say "How was this even made?"

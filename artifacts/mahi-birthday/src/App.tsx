@@ -1,0 +1,48 @@
+import { useState, useEffect } from 'react';
+import { LoadingScreen } from './components/LoadingScreen';
+import { HeroSection } from './components/HeroSection';
+import { MusicPlayer } from './components/MusicPlayer';
+import { PhotoGallery } from './components/PhotoGallery';
+import { VideoMemories } from './components/VideoMemories';
+import { Timeline } from './components/Timeline';
+import { LoveMessage } from './components/LoveMessage';
+import { SurpriseSection } from './components/SurpriseSection';
+import { FinalScene } from './components/FinalScene';
+import { ParticleSystem } from './components/ParticleSystem';
+import { CursorTrail } from './components/CursorTrail';
+import { AnimatePresence } from 'framer-motion';
+
+function App() {
+  const [loading, setLoading] = useState(true);
+
+  // Scroll to top on load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <>
+      <AnimatePresence>
+        {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+      </AnimatePresence>
+
+      {!loading && (
+        <main className="w-full min-h-screen bg-background text-foreground relative selection:bg-primary/30">
+          <ParticleSystem />
+          <CursorTrail />
+          <MusicPlayer />
+          
+          <HeroSection />
+          <PhotoGallery />
+          <VideoMemories />
+          <Timeline />
+          <LoveMessage />
+          <SurpriseSection />
+          <FinalScene />
+        </main>
+      )}
+    </>
+  );
+}
+
+export default App;
