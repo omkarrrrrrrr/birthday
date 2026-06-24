@@ -2,21 +2,8 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-/* Instagram carousel slides — shown fully, no cropping (object-contain) */
-const slides = [
-  '/slides/719658964_17976353412044262_4978992397195635519_n.webp',
-  '/slides/719008875_17976353466044262_2375902839987223164_n.webp',
-  '/slides/719009009_17976353457044262_3399814665857040023_n.webp',
-  '/slides/719009705_17976353475044262_2027973676093718324_n.webp',
-  '/slides/719483234_17976353490044262_8664727810978777395_n.webp',
-  '/slides/720010879_17976353430044262_406997745114523242_n.webp',
-  '/slides/720075311_17976353493044262_3374479350093775300_n.webp',
-  '/slides/720227304_17976353439044262_8055818310746945370_n.webp',
-  '/slides/720475112_17976353448044262_7760811604931965574_n.webp',
-  '/slides/720475128_17976353427044262_6447538757338885851_n.webp',
-  '/slides/720588272_17976353502044262_5475694374578136107_n.webp',
-  '/slides/720712321_17976353511044262_1362236856784668047_n.webp',
-];
+/* Instagram carousel slides — numbered in correct order, shown fully (object-contain) */
+const slides = Array.from({ length: 12 }, (_, i) => `/slides/${i + 1}.webp`);
 
 const variants = {
   enter: (dir: number) => ({ x: dir > 0 ? '100%' : '-100%', opacity: 0 }),
