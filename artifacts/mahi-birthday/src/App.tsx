@@ -3,7 +3,6 @@ import { LoadingScreen } from './components/LoadingScreen';
 import { HeroSection } from './components/HeroSection';
 import { MusicPlayer } from './components/MusicPlayer';
 import { PhotoGallery } from './components/PhotoGallery';
-import { VideoMemories } from './components/VideoMemories';
 import { Timeline } from './components/Timeline';
 import { LoveMessage } from './components/LoveMessage';
 import { SurpriseSection } from './components/SurpriseSection';
@@ -34,7 +33,6 @@ function App() {
 
           <HeroSection />
           <PhotoGallery />
-          <VideoMemories />
           <Timeline />
           <LoveMessage />
           <SurpriseSection />

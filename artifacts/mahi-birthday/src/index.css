@@ -168,6 +168,22 @@
   z-index: 50;
 }
 
+/* Particle keyframes — GPU-composited, no JS loop */
+@keyframes fireflyFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(20px, -30px) scale(1.4); }
+}
+@keyframes fireflyFade {
+  from { opacity: 0.1; }
+  to   { opacity: 0.85; }
+}
+@keyframes petalFall {
+  0%   { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
+  5%   { opacity: 0.45; }
+  95%  { opacity: 0.35; }
+  100% { transform: translateY(110vh) rotate(540deg) translateX(40px); opacity: 0; }
+}
+
 /* iPhone safe area */
 .pb-safe {
   padding-bottom: env(safe-area-inset-bottom, 0px);

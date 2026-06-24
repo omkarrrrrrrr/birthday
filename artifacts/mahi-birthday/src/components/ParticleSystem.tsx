@@ -1,76 +1,57 @@
 import { useEffect, useRef } from 'react';
 
+/* Tiny, CSS-keyframe-driven particles for ambient atmosphere.
+   Kept very lean (8 fireflies + 5 petals) so it never stresses the CPU.
+   Each element is GPU-composited via transform/opacity only. */
+
 export function ParticleSystem() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
+    const container = ref.current;
     if (!container) return;
 
-    // Fireflies
-    for (let i = 0; i < 30; i++) {
-      const firefly = document.createElement('div');
-      firefly.className = 'absolute rounded-full bg-accent/80 blur-[1px] animate-pulse';
-      
-      const size = Math.random() * 4 + 1;
-      firefly.style.width = `${size}px`;
-      firefly.style.height = `${size}px`;
-      
-      firefly.style.left = `${Math.random() * 100}%`;
-      firefly.style.top = `${Math.random() * 100}%`;
-      
-      firefly.style.animationDuration = `${Math.random() * 3 + 2}s`;
-      firefly.style.animationDelay = `${Math.random() * 2}s`;
-      
-      container.appendChild(firefly);
+    // Fireflies — pure CSS animation, no JS loop needed
+    for (let i = 0; i < 8; i++) {
+      const el = document.createElement('div');
+      el.className = 'firefly';
+      el.style.cssText = `
+        position: absolute;
+        width: ${2 + Math.random() * 3}px;
+        height: ${2 + Math.random() * 3}px;
+        border-radius: 50%;
+        background: hsl(${45 + Math.random() * 30},100%,75%);
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        animation: fireflyFloat ${4 + Math.random() * 4}s ease-in-out ${Math.random() * 4}s infinite alternate,
+                   fireflyFade  ${2 + Math.random() * 3}s ease-in-out ${Math.random() * 3}s infinite alternate;
+        will-change: transform, opacity;
+        pointer-events: none;
+      `;
+      container.appendChild(el);
     }
 
-    // Rose petals
-    for (let i = 0; i < 15; i++) {
-      const petal = document.createElement('div');
-      petal.className = 'absolute bg-primary/40 rounded-full blur-[2px]';
-      
-      const width = Math.random() * 15 + 10;
-      const height = Math.random() * 10 + 5;
-      petal.style.width = `${width}px`;
-      petal.style.height = `${height}px`;
-      
-      petal.style.left = `${Math.random() * 100}%`;
-      petal.style.top = `-${Math.random() * 20}%`;
-      
-      petal.style.transition = 'top 10s linear, left 10s ease-in-out';
-      
-      const animatePetal = () => {
-        petal.style.top = '120%';
-        petal.style.left = `${Math.random() * 100}%`;
-        petal.style.transform = `rotate(${Math.random() * 360}deg)`;
-        
-        setTimeout(() => {
-          petal.style.transition = 'none';
-          petal.style.top = `-${Math.random() * 20}%`;
-          
-          setTimeout(() => {
-            petal.style.transition = 'top 10s linear, left 10s ease-in-out';
-            animatePetal();
-          }, 100);
-        }, 10000);
-      };
-      
-      setTimeout(animatePetal, Math.random() * 5000);
-      container.appendChild(petal);
+    // Rose petals — drift down off-screen, loop
+    for (let i = 0; i < 5; i++) {
+      const el = document.createElement('div');
+      el.style.cssText = `
+        position: absolute;
+        width: ${10 + Math.random() * 14}px;
+        height: ${6 + Math.random() * 8}px;
+        border-radius: 50% 0 50% 0;
+        background: hsl(${330 + Math.random() * 30},100%,${68 + Math.random() * 12}%);
+        opacity: 0.45;
+        left: ${Math.random() * 100}%;
+        top: -5%;
+        animation: petalFall ${10 + Math.random() * 8}s linear ${Math.random() * 8}s infinite;
+        will-change: transform;
+        pointer-events: none;
+      `;
+      container.appendChild(el);
     }
 
-    return () => {
-      if (container) {
-        container.innerHTML = '';
-      }
-    };
+    return () => { if (container) container.innerHTML = ''; };
   }, []);
 
-  return (
-    <div 
-      ref={containerRef} 
-      className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
-    />
-  );
+  return <div ref={ref} className="fixed inset-0 pointer-events-none z-0 overflow-hidden" />;
 }
