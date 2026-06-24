@@ -22,14 +22,15 @@ export function CursorTrail() {
     };
     window.addEventListener('resize', resize);
 
-    const hearts: { x: number; y: number; size: number; alpha: number; life: number; vy: number }[] = [];
+    type Heart = { x: number; y: number; size: number; alpha: number; life: number; vy: number };
+    const hearts: Heart[] = [];
 
     const drawHeart = (x: number, y: number, size: number, alpha: number) => {
       ctx.save();
       ctx.translate(x, y);
       ctx.scale(size, size);
       ctx.globalAlpha = alpha;
-      ctx.fillStyle = '#FF1493';
+      ctx.fillStyle = '#A8224B';
       ctx.beginPath();
       ctx.moveTo(0, 0);
       ctx.bezierCurveTo(0, -3, -5, -3, -5, 0);
@@ -40,48 +41,34 @@ export function CursorTrail() {
       ctx.restore();
     };
 
-    const spawnHeart = (x: number, y: number, burst = false) => {
-      const count = burst ? 18 : 1;
-      for (let i = 0; i < count; i++) {
+    const spawn = (x: number, y: number, burst = false) => {
+      const n = burst ? 14 : 1;
+      for (let i = 0; i < n; i++) {
         hearts.push({
-          x: x + (burst ? (Math.random() - 0.5) * 60 : 0),
-          y: y + (burst ? (Math.random() - 0.5) * 60 : 0),
-          size: Math.random() * (burst ? 2.5 : 1.5) + 0.5,
+          x: x + (burst ? (Math.random() - 0.5) * 55 : 0),
+          y: y + (burst ? (Math.random() - 0.5) * 55 : 0),
+          size: Math.random() * (burst ? 2.2 : 1.4) + 0.4,
           alpha: 1,
           life: 100,
-          vy: burst ? -(Math.random() * 2 + 1) : -1,
+          vy: burst ? -(Math.random() * 1.8 + 0.8) : -0.9,
         });
       }
     };
 
-    // Mouse handlers
-    let lastX = -999, lastY = -999;
-    const onMouseMove = (e: MouseEvent) => {
-      const dx = e.clientX - lastX, dy = e.clientY - lastY;
-      if (dx * dx + dy * dy > 400) {
-        spawnHeart(e.clientX, e.clientY);
-        lastX = e.clientX;
-        lastY = e.clientY;
-      }
+    let lx = -999, ly = -999;
+    const onMove = (e: MouseEvent) => {
+      const dx = e.clientX - lx, dy = e.clientY - ly;
+      if (dx * dx + dy * dy > 400) { spawn(e.clientX, e.clientY); lx = e.clientX; ly = e.clientY; }
     };
-    const onClick = (e: MouseEvent) => spawnHeart(e.clientX, e.clientY, true);
-
-    // Touch handlers for mobile
+    const onClick = (e: MouseEvent) => spawn(e.clientX, e.clientY, true);
     const onTouchMove = (e: TouchEvent) => {
       const t = e.touches[0];
-      const dx = t.clientX - lastX, dy = t.clientY - lastY;
-      if (dx * dx + dy * dy > 900) {
-        spawnHeart(t.clientX, t.clientY);
-        lastX = t.clientX;
-        lastY = t.clientY;
-      }
+      const dx = t.clientX - lx, dy = t.clientY - ly;
+      if (dx * dx + dy * dy > 900) { spawn(t.clientX, t.clientY); lx = t.clientX; ly = t.clientY; }
     };
-    const onTouchStart = (e: TouchEvent) => {
-      const t = e.touches[0];
-      spawnHeart(t.clientX, t.clientY, true);
-    };
+    const onTouchStart = (e: TouchEvent) => { const t = e.touches[0]; spawn(t.clientX, t.clientY, true); };
 
-    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mousemove', onMove);
     window.addEventListener('click', onClick);
     window.addEventListener('touchmove', onTouchMove, { passive: true });
     window.addEventListener('touchstart', onTouchStart, { passive: true });
@@ -91,15 +78,12 @@ export function CursorTrail() {
       ctx.clearRect(0, 0, width, height);
       for (let i = hearts.length - 1; i >= 0; i--) {
         const h = hearts[i];
-        h.life -= 1.5;
+        h.life -= 1.4;
         h.alpha = h.life / 100;
         h.y += h.vy;
-        h.x += (Math.random() - 0.5) * 0.8;
-        if (h.life <= 0) {
-          hearts.splice(i, 1);
-        } else {
-          drawHeart(h.x, h.y, h.size, h.alpha);
-        }
+        h.x += (Math.random() - 0.5) * 0.7;
+        if (h.life <= 0) hearts.splice(i, 1);
+        else drawHeart(h.x, h.y, h.size, h.alpha);
       }
       raf = requestAnimationFrame(render);
     };
@@ -107,7 +91,7 @@ export function CursorTrail() {
 
     return () => {
       window.removeEventListener('resize', resize);
-      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mousemove', onMove);
       window.removeEventListener('click', onClick);
       window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('touchstart', onTouchStart);
@@ -115,10 +99,5 @@ export function CursorTrail() {
     };
   }, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-50"
-    />
-  );
+  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-50" />;
 }
