@@ -31,13 +31,16 @@ export function SlideShow() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-10 px-4"
+        className="text-center mb-10 px-6 max-w-sm mx-auto"
       >
-        <p className="text-secondary text-xs tracking-[0.3em] uppercase mb-3 font-sans">Instagram Post</p>
+        <p className="text-secondary text-xs tracking-[0.3em] uppercase mb-3 font-sans">From Omkar</p>
         <h2 className="font-serif text-4xl md:text-5xl text-foreground italic">
-          As Seen Together
+          My Favourite Frames
         </h2>
-        <div className="gold-line w-28 mx-auto mt-5" />
+        <div className="gold-line w-28 mx-auto mt-5 mb-5" />
+        <p className="font-serif italic text-sm leading-relaxed" style={{ color: 'hsl(36 28% 55%)' }}>
+          Some moments I never want to forget — every one of these is a reason I smile.
+        </p>
       </motion.div>
 
       {/* Viewer */}
