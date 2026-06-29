@@ -7,6 +7,7 @@ import { Timeline } from './components/Timeline';
 import { LoveMessage } from './components/LoveMessage';
 import { SurpriseSection } from './components/SurpriseSection';
 import { DaysCounter } from './components/DaysCounter';
+import { LoveReasons } from './components/LoveReasons';
 import { SlideShow } from './components/SlideShow';
 import { VideoMemory } from './components/VideoMemory';
 import { FinalScene } from './components/FinalScene';
@@ -38,6 +39,7 @@ function App() {
           <Timeline />
           <VideoMemory />
           <DaysCounter />
+          <LoveReasons />
           <LoveMessage />
           <SurpriseSection />
           <SlideShow />
