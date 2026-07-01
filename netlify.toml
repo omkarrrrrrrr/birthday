@@ -1,0 +1,7 @@
+[build]
+  command = "corepack pnpm --dir artifacts/mahi-birthday install --no-frozen-lockfile && corepack pnpm --dir artifacts/mahi-birthday build"
+  publish = "artifacts/mahi-birthday/dist"
+  base = "."
+
+[build.environment]
+  NODE_VERSION = "24"
