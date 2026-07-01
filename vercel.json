@@ -1,0 +1,16 @@
+{
+  "version": 3,
+  "builds": [
+    {
+      "src": "artifacts/mahi-birthday/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "artifacts/mahi-birthday/dist"
+      }
+    }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/artifacts/mahi-birthday/dist/index.html" }
+  ]
+}
