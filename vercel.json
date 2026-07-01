@@ -1,5 +1,12 @@
 {
-  "version": 3,
-  "buildCommand": "pnpm --dir artifacts/mahi-birthday run build",
-  "outputDirectory": "artifacts/mahi-birthday/dist"
+  "version": 2,
+  "builds": [
+    {
+      "src": "artifacts/mahi-birthday/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ]
 }
