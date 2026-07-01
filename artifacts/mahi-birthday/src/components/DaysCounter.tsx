@@ -25,21 +25,21 @@ function Unit({ value, label, delay }: { value: string; label: string; delay: nu
       className="flex flex-col items-center"
     >
       <div
-        className="rounded-xl px-3 py-3 min-w-[64px] text-center relative overflow-hidden"
+        className="rounded-xl text-center relative overflow-hidden"
         style={{
+          padding: 'clamp(8px, 2vw, 12px) clamp(10px, 3vw, 16px)',
+          minWidth: 'clamp(52px, 18vw, 72px)',
           background: 'rgba(8,6,20,0.6)',
           border: '1px solid hsl(342 66% 39% / 0.25)',
           boxShadow: '0 4px 24px hsl(342 66% 39% / 0.08)',
         }}
       >
-        {/* subtle shimmer line at top */}
         <div className="absolute top-0 left-0 right-0 h-px"
           style={{ background: 'linear-gradient(90deg, transparent, hsl(43 72% 44% / 0.5), transparent)' }} />
-
         <span
           className="font-serif font-light tabular-nums leading-none"
           style={{
-            fontSize: 'clamp(1.8rem, 8vw, 3rem)',
+            fontSize: 'clamp(1.6rem, 7vw, 3rem)',
             background: 'linear-gradient(160deg, hsl(36 28% 92%), hsl(342 66% 58%), hsl(43 72% 55%))',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -48,7 +48,7 @@ function Unit({ value, label, delay }: { value: string; label: string; delay: nu
           {value}
         </span>
       </div>
-      <span className="text-[10px] tracking-[0.25em] uppercase mt-2 font-sans"
+      <span className="text-[10px] tracking-[0.2em] uppercase mt-2 font-sans"
         style={{ color: 'hsl(36 28% 45%)' }}>
         {label}
       </span>
@@ -64,6 +64,13 @@ export function DaysCounter() {
     return () => clearInterval(id);
   }, []);
 
+  const sep = (
+    <span className="font-serif self-center pb-5 flex-shrink-0"
+      style={{ fontSize: 'clamp(1.2rem, 5vw, 2rem)', color: 'hsl(342 66% 39% / 0.5)', lineHeight: 1 }}>
+      :
+    </span>
+  );
+
   return (
     <section className="py-20 px-4 w-full">
       <motion.div
@@ -78,28 +85,16 @@ export function DaysCounter() {
         <div className="gold-line w-28 mx-auto mt-5" />
       </motion.div>
 
-      {/* Counter grid */}
-      <div className="flex items-start justify-center gap-3 sm:gap-5 flex-wrap">
+      <div className="flex items-start justify-center gap-1 sm:gap-3 px-2">
         <Unit value={String(elapsed.days)} label="Days"    delay={0}    />
-
-        {/* Colon separator */}
-        <span className="font-serif text-3xl self-center pb-5"
-          style={{ color: 'hsl(342 66% 39% / 0.6)', lineHeight: 1 }}>:</span>
-
+        {sep}
         <Unit value={pad(elapsed.hours)}   label="Hours"   delay={0.08} />
-
-        <span className="font-serif text-3xl self-center pb-5"
-          style={{ color: 'hsl(342 66% 39% / 0.6)', lineHeight: 1 }}>:</span>
-
+        {sep}
         <Unit value={pad(elapsed.minutes)} label="Minutes" delay={0.16} />
-
-        <span className="font-serif text-3xl self-center pb-5"
-          style={{ color: 'hsl(342 66% 39% / 0.6)', lineHeight: 1 }}>:</span>
-
+        {sep}
         <Unit value={pad(elapsed.seconds)} label="Seconds" delay={0.24} />
       </div>
 
-      {/* Since label */}
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
