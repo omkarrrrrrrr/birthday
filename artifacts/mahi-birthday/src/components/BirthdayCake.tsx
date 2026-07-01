@@ -23,9 +23,9 @@ const wishes = [
 ];
 
 const milestones = [
-  { label: '1 Year', value: 0, response: "One year of us. I'll make sure it's unforgettable. 🥂" },
-  { label: '4 Years', value: 1, response: "Four years — that's four hundred more reasons to love you. 💛" },
-  { label: '5 Years', value: 2, response: "Half a decade together. I like the sound of that. ❤️" },
+  { label: 'Sometime', value: 0, response: "Even a little while with you means everything to me. 🥂" },
+  { label: 'A bit more', value: 1, response: "A bit more — I'll make every single moment count. 💛" },
+  { label: 'Much more', value: 2, response: "Much more time together. Now we're talking. ❤️" },
   { label: 'Forever', value: 3, response: "Forever it is. That's all I needed to hear. ❤️‍🔥" },
 ];
 
