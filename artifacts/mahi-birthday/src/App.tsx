@@ -8,6 +8,7 @@ import { LoveMessage } from './components/LoveMessage';
 import { SurpriseSection } from './components/SurpriseSection';
 import { DaysCounter } from './components/DaysCounter';
 import { LoveReasons } from './components/LoveReasons';
+import { BirthdayCake } from './components/BirthdayCake';
 import { SlideShow } from './components/SlideShow';
 import { VideoMemory } from './components/VideoMemory';
 import { FinalScene } from './components/FinalScene';
@@ -40,6 +41,7 @@ function App() {
           <VideoMemory />
           <DaysCounter />
           <LoveReasons />
+          <BirthdayCake />
           <LoveMessage />
           <SurpriseSection />
           <SlideShow />
