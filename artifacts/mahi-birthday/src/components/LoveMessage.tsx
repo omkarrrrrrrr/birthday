@@ -2,16 +2,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
 const lines = [
-  { text: "Dear Mahi,", style: "header" },
-  { text: "Happy Birthday to the most beautiful person in my life.", style: "lead" },
-  { text: "Every smile of yours feels like sunshine.", style: "body" },
-  { text: "Every conversation becomes a memory.", style: "body" },
-  { text: "Every moment with you becomes special.", style: "body" },
-  { text: "Thank you for bringing happiness into my life and making ordinary days unforgettable.", style: "lead" },
-  { text: "I wish you endless happiness, success, laughter and love.", style: "body" },
-  { text: "No matter what happens, you'll always hold a special place in my heart.", style: "body" },
-  { text: "Happy Birthday ❤️", style: "accent" },
-  { text: "Forever yours,", style: "sign" },
+  { text: "HELLO MY BABUDIII / MY RASMALAIIIIII / MY JAAN / MY DARLING / MY ANGEL ❤️", style: "header" },
+  { text: "FIRST OF ALL, HAPPIEST BIRTHDAY TO MY LOVE, MAHI! I LOVE YOU SO, SO MUCH — I CAN’T EVEN TELL YOU.", style: "lead" },
+  { text: "YOU OWN A VERY, VERY SPECIAL PLACE IN MY HEART... OR RATHER, I SHOULD SAY YOU ARE MY WHOLE HEART.", style: "body" },
+  { text: "I’M SO GRATEFUL TO HAVE YOU IN MY LIFE, AND I WANT YOU TO STAY WITH ME FOREVER.", style: "body" },
+  { text: "I WANT US TO BUILD OUR FUTURE TOGETHER. I’VE NEVER FELT THIS LOVED BEFORE, AND THAT’S WHY I WANT TO DO EVERYTHING I CAN JUST TO SEE A SMILE ON YOUR FACE, TO MAKE YOU SHY, BLUSH, AND LAUGH.", style: "body" },
+  { text: "ALSO, I KNOW YOU’LL ACHIEVE EVERYTHING YOU DESIRE IN LIFE.", style: "lead" },
+  { text: "JUST STAY CONSISTENT AS YOU ARE, AND YOU’LL GET WHAT YOU WANT. I’M ALWAYS HERE TO SUPPORT YOU, ADORE YOU, AND APPRECIATE YOU.", style: "body" },
+  { text: "STAY BLESSED, AND ONCE AGAIN, HAPPIEST BIRTHDAY TO THE LOVE OF MY LIFE.", style: "body" },
+  { text: "I LOVE YOU INFINITE ❤️", style: "accent" },
+  { text: "(PLEASE HUG ME TIGHTLY AFTER READING THIS 🥹)", style: "sign" },
   { text: "Omkar", style: "name" },
 ];
 

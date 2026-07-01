@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { X } from 'lucide-react';
 
 const photos = [
-  { src: '/photos/IMG-20260522-WA0092.jpg', caption: 'Our story', date: '22 May 2026' },
+  { src: '/photos/IMG-20260522-WA0092.jpg', caption: 'Our story', date: '7 May 2026' },
   { src: '/photos/IMG-20260615-WA0004.jpg', caption: 'You', date: '15 June 2026' },
   { src: '/photos/IMG_20260604_193107892.jpg', caption: 'Forever mine', date: '4 June 2026' },
 ];
