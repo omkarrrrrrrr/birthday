@@ -4,17 +4,14 @@ import { resumeBackgroundMusic } from '@/lib/musicController';
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
+  const [canEnter, setCanEnter] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((p) => {
         if (p >= 100) {
           clearInterval(timer);
-          setTimeout(() => {
-            // Try to start background music after loading completes
-            resumeBackgroundMusic();
-            onComplete();
-          }, 700);
+          setCanEnter(true);
           return 100;
         }
         return p + 2;
@@ -22,6 +19,12 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
     }, 28);
     return () => clearInterval(timer);
   }, [onComplete]);
+
+  const handleEnter = () => {
+    // This click interaction allows browsers to play audio
+    resumeBackgroundMusic();
+    onComplete();
+  };
 
   return (
     <motion.div
@@ -69,6 +72,25 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             transition={{ ease: 'easeOut' }}
           />
         </div>
+
+        {/* Enter button - appears after loading completes */}
+        {canEnter && (
+          <motion.button
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            onClick={handleEnter}
+            className="mt-10 px-8 py-3 rounded-full font-serif text-lg italic touch-manipulation"
+            style={{
+              background: 'linear-gradient(135deg, hsl(342 66% 33%), hsl(342 66% 26%))',
+              border: '1px solid hsl(342 66% 39% / 0.6)',
+              color: 'hsl(36 28% 92%)',
+              boxShadow: '0 0 30px hsl(342 66% 39% / 0.3)',
+            }}
+          >
+            Click to Enter ❤️
+          </motion.button>
+        )}
       </motion.div>
     </motion.div>
   );
