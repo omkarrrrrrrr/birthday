@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { resumeBackgroundMusic } from '@/lib/musicController';
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
@@ -9,7 +10,11 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       setProgress((p) => {
         if (p >= 100) {
           clearInterval(timer);
-          setTimeout(onComplete, 700);
+          setTimeout(() => {
+            // Try to start background music after loading completes
+            resumeBackgroundMusic();
+            onComplete();
+          }, 700);
           return 100;
         }
         return p + 2;
