@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { pauseBackgroundMusic, resumeBackgroundMusic } from '@/lib/musicController';
 
 const lines = [
   { text: "HELLO MY BABUDIII / MY RASMALAIIIIII / MY JAAN / MY DARLING / MY ANGEL ❤️", style: "header" },
@@ -42,6 +43,24 @@ function EnvelopeFlap({ open }: { open: boolean }) {
 
 export function LoveMessage() {
   const [opened, setOpened] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const handleVoiceNotePlay = () => {
+    pauseBackgroundMusic();
+  };
+
+  const handleVoiceNoteEnd = () => {
+    resumeBackgroundMusic();
+  };
 
   return (
     <section className="py-20 px-5 relative overflow-hidden">
@@ -151,6 +170,44 @@ export function LoveMessage() {
                     {line.text}
                   </motion.p>
                 ))}
+
+                {/* Voice Note */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 1.8 }}
+                  className="pt-6"
+                >
+                  <p className="font-sans text-xs tracking-widest uppercase mb-4" style={{ color: 'hsl(36 28% 60%)' }}>
+                    A voice note for you ❤️
+                  </p>
+                  <div
+                    className="rounded-2xl p-5 relative mx-auto"
+                    style={{
+                      maxWidth: '320px',
+                      background: 'linear-gradient(135deg, hsl(342 66% 24%), hsl(342 66% 18%))',
+                      border: '1px solid hsl(342 66% 39% / 0.4)',
+                      boxShadow: '0 8px 30px hsl(342 66% 39% / 0.2)',
+                    }}
+                  >
+                    <div className="absolute top-3 left-3 w-4 h-4 border-l border-t rounded-tl-sm" style={{ borderColor: 'hsl(43 72% 44% / 0.5)' }} />
+                    <div className="absolute top-3 right-3 w-4 h-4 border-r border-t rounded-tr-sm" style={{ borderColor: 'hsl(43 72% 44% / 0.5)' }} />
+                    <div className="absolute bottom-3 left-3 w-4 h-4 border-l border-b rounded-bl-sm" style={{ borderColor: 'hsl(43 72% 44% / 0.5)' }} />
+                    <div className="absolute bottom-3 right-3 w-4 h-4 border-r border-b rounded-br-sm" style={{ borderColor: 'hsl(43 72% 44% / 0.5)' }} />
+                    
+                    <audio
+                      ref={audioRef}
+                      src="/voicenote.mpeg"
+                      controls
+                      className="w-full"
+                      style={{ 
+                        filter: 'sepia(20%) saturate(70%) grayscale(10%)',
+                      }}
+                      onPlay={handleVoiceNotePlay}
+                      onEnded={handleVoiceNoteEnd}
+                    />
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           )}

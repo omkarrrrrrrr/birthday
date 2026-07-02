@@ -1,9 +1,18 @@
+import { useEffect } from 'react';
 import { useAudio } from '@/hooks/useAudio';
 import { Play, Pause } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { registerMusicController } from '@/lib/musicController';
 
 export function MusicPlayer() {
-  const { playing, toggle } = useAudio('/music.mp3');
+  const { playing, toggle, pause, play } = useAudio('/music.mp3');
+
+  useEffect(() => {
+    registerMusicController({
+      pause: () => pause(),
+      resume: () => play(),
+    });
+  }, [pause, play]);
 
   return (
     <motion.div

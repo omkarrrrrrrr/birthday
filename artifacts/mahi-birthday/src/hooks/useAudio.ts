@@ -42,5 +42,17 @@ export function useAudio(url: string) {
     setPlaying(!playing);
   };
 
-  return { playing, toggle };
+  const pause = () => {
+    if (!audioRef.current) return;
+    audioRef.current.pause();
+    setPlaying(false);
+  };
+
+  const play = () => {
+    if (!audioRef.current) return;
+    audioRef.current.play();
+    setPlaying(true);
+  };
+
+  return { playing, toggle, pause, play };
 }

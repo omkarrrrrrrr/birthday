@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
+import { pauseBackgroundMusic, resumeBackgroundMusic } from '@/lib/musicController';
 
-/* ── swap this path when you upload the surprise video ── */
 const SURPRISE_VIDEO = '/surprise-video.mp4';
 
 export function SurpriseSection() {
@@ -21,8 +21,21 @@ export function SurpriseSection() {
     };
     burst();
 
-    /* auto-play the video once it's in the DOM */
-    setTimeout(() => { videoRef.current?.play().catch(() => {}); }, 300);
+    /* Don't auto-play video to allow sound - user must click play */
+  };
+
+  const handleVideoPlay = () => {
+    console.log('Video started playing');
+    if (videoRef.current) {
+      console.log('Video volume:', videoRef.current.volume);
+      console.log('Video muted:', videoRef.current.muted);
+    }
+    pauseBackgroundMusic();
+  };
+
+  const handleVideoEnd = () => {
+    console.log('Video ended');
+    resumeBackgroundMusic();
   };
 
   return (
@@ -73,20 +86,48 @@ export function SurpriseSection() {
             <div
               className="rounded-2xl overflow-hidden relative"
               style={{
-                background: '#000',
-                border: '1px solid hsl(342 66% 39% / 0.3)',
-                boxShadow: '0 8px 50px hsl(342 66% 39% / 0.18)',
+                background: 'linear-gradient(135deg, hsl(342 66% 24%), hsl(342 66% 18%))',
+                border: '1px solid hsl(342 66% 39% / 0.4)',
+                boxShadow: '0 8px 50px hsl(342 66% 39% / 0.25)',
               }}
             >
-              <video
-                ref={videoRef}
-                src={SURPRISE_VIDEO}
-                playsInline
-                controls
-                preload="metadata"
-                className="w-full block"
-                style={{ objectFit: 'contain', maxHeight: '65dvh', background: '#000' }}
-              />
+              <div className="relative" style={{ padding: '12px' }}>
+                <div className="absolute top-3 left-3 w-5 h-5 border-l border-t rounded-tl-sm" style={{ borderColor: 'hsl(43 72% 44% / 0.5)' }} />
+                <div className="absolute top-3 right-3 w-5 h-5 border-r border-t rounded-tr-sm" style={{ borderColor: 'hsl(43 72% 44% / 0.5)' }} />
+                <div className="absolute bottom-3 left-3 w-5 h-5 border-l border-b rounded-bl-sm" style={{ borderColor: 'hsl(43 72% 44% / 0.5)' }} />
+                <div className="absolute bottom-3 right-3 w-5 h-5 border-r border-b rounded-br-sm" style={{ borderColor: 'hsl(43 72% 44% / 0.5)' }} />
+                
+                <video
+                  ref={videoRef}
+                  src={SURPRISE_VIDEO}
+                  playsInline
+                  controls
+                  preload="metadata"
+                  className="w-full block rounded-lg"
+                  style={{ 
+                    objectFit: 'contain', 
+                    maxHeight: '60dvh', 
+                    background: '#000',
+                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+                  }}
+                  onPlay={handleVideoPlay}
+                  onEnded={handleVideoEnd}
+                  onError={(e) => {
+                    console.error('Video error:', e);
+                    alert('Error loading video. Please check the console for details.');
+                  }}
+                  onLoadedMetadata={() => {
+                    console.log('Video metadata loaded');
+                    if (videoRef.current) {
+                      console.log('Video duration:', videoRef.current.duration);
+                    }
+                  }}
+                >
+                  <p style={{ color: 'white', padding: '20px', textAlign: 'center' }}>
+                    Your browser does not support the video tag.
+                  </p>
+                </video>
+              </div>
             </div>
 
             {/* Love message below video */}
